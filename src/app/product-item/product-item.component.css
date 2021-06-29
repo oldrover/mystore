@@ -1,0 +1,15 @@
+img {
+    width: 100px;
+}
+.product-item {
+    background: #ffffff;
+    margin: 10px;
+    display: flex;    
+    align-items: center;
+    border: 3px solid;
+    border-radius: 10px;
+    border-color: #D0DDD7;
+    flex-direction: column;
+    width: 450px;
+    height: 300px;
+}
