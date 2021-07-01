@@ -2,6 +2,6 @@
 <div class="product-item">
     <strong>{{ product.title }}</strong>
     <img src="{{ product.image }}">
-    <p><strong>{{ product.price }} $</strong></p>
+    <p><strong>{{ product.price | currency }}</strong></p>
 </div>
 </a>
