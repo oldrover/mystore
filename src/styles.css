@@ -1,4 +1,7 @@
 body {
     margin-top: 150px;
     background: #A5AE9E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
