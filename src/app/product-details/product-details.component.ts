@@ -3,6 +3,8 @@ import {ActivatedRoute } from '@angular/router';
 import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -12,12 +14,16 @@ import { CartService } from '../services/cart.service';
 })
 export class ProductDetailsComponent implements OnInit {
   id: number = 1;
+  quantity: number = 1;
   product: Product;
+  faCart = faCartPlus;  
 
   constructor(
     private route: ActivatedRoute, 
     private productService: ProductService,
-    private cartService: CartService 
+    private cartService: CartService,
+    private modalService: NgbModal
+
     ) {
       this.product = {
         id: 1,
@@ -39,9 +45,14 @@ export class ProductDetailsComponent implements OnInit {
     })
   }  
 
-  addProductToCart(product: Product): void {
+  addProductToCart(product: Product, content: any): void {
     this.cartService.addProductToCart(product);
-    window.alert("Product added to cart");
-     
+    //window.alert("Product added to cart");
+    this.openModal(content);
+    
+  }
+
+  openModal(content: any) {
+    this.modalService.open(content, { windowClass: 'dark-modal', size: 'sm' });
   }
 }

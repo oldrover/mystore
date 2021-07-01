@@ -11,3 +11,8 @@ img {
     flex: 400px;
     
 }
+
+.modal-body, 
+.modal-footer {
+    background: #A5AE9E;
+}

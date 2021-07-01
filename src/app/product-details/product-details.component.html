@@ -1,14 +1,36 @@
-<p>{{product.title}}</p>
-<div class="product-details">    
-    <img src="{{ product.image }}">
-    <p>{{ product.description }}</p>
+<ng-template #content let-modal>    
+    <div class="modal-body">
+      <p>product added to cart</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+<div class="container row">    
+    <div class="product-details col">    
+        <img src="{{ product.image }}">        
+    </div>
+    <div class="col">
+        <h3>{{product.title}}</h3>
+        <p>{{ product.description }}</p>
+        <div class="input-group">
+            <select class="form-select">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <button class="btn btn-success" (click)="addProductToCart(product, content)">
+                <fa-icon [icon]="faCart"></fa-icon> add to cart
+            </button>
+        </div>
+    </div>
 </div>
-<div><select>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-</select><br>
-<button class="btn btn-primary" (click)="addProductToCart(product)">add to Cart</button></div>
+
+
+
+
+
 
