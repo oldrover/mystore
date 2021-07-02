@@ -1,6 +1,7 @@
 import { Component, OnInit , Input} from '@angular/core';
 import { Product } from '../models/Product';
 import { CartService } from '../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -8,26 +9,27 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent implements OnInit {
-  products = this.cartService.getCartProducts();
+  products: Product[] = this.cartService.getCartProducts();
   total: number = 0;
   empty: boolean = true;
 
-  constructor(private cartService: CartService) { }
+  name: string = "";
+  address: string = "";
+  creditcard: string = "";
+
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.products.length > 0) {
       this.total = this.products.reduce((prev, cur) => {
-        return prev + cur.price;
+        return prev + (cur.price * cur.amount);
       }, 0);
       this.empty = false;
     }
-    else {
-
-    }
-
-    
-
-   
   }
 
+  submitOrder() {    
+    this.router.navigate(['confirmation'],{ queryParams: {name: this.name,total: this.total }});
+    this.cartService.clearCart();
+  }
 }
