@@ -12,6 +12,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProductsComponent,
     ProductItemComponent,
     ProductDetailsComponent,    
-    ShoppingCartComponent
+    ShoppingCartComponent, ConfirmationComponent
   ],
   imports: [
     BrowserModule,
