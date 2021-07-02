@@ -1,6 +1,6 @@
 <ng-template #content let-modal>    
     <div class="modal-body">
-      <p>product added to cart</p>
+      <strong>product added to cart</strong>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Close</button>
@@ -15,16 +15,13 @@
         <h3>{{product.title}}</h3>
         <p>{{ product.description }}</p>
         <div class="input-group">
-            <select class="form-select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <select class="form-select" [(ngModel)]="optionAmount">
+                <option *ngFor="let o of options">{{ o }}</option>
             </select>
             <button class="btn btn-success" (click)="addProductToCart(product, content)">
                 <fa-icon [icon]="faCart"></fa-icon> add to cart
             </button>
+            <a routerLink="/">back to products</a> 
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 img {
     width: 300px;
+    border-radius: 5px;
 }
 .product-details {
     margin: 10px;
@@ -15,4 +16,9 @@ img {
 .modal-body, 
 .modal-footer {
     background: #A5AE9E;
+    display: flex;
+    align-items: center;
+    justify-content: center;       
+    flex-direction: row;
+    flex-wrap: wrap;    
 }

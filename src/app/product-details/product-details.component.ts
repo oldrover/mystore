@@ -16,7 +16,10 @@ export class ProductDetailsComponent implements OnInit {
   id: number = 1;
   quantity: number = 1;
   product: Product;
-  faCart = faCartPlus;  
+  faCart = faCartPlus; 
+  
+  optionAmount: number = 1;
+  options = [1,2,3,4,5];
 
   constructor(
     private route: ActivatedRoute, 
@@ -31,7 +34,8 @@ export class ProductDetailsComponent implements OnInit {
         price: 0,
         description: '',
         category: '',
-        image: ''
+        image: '',
+        amount: 1
       }
      }
 
@@ -41,13 +45,15 @@ export class ProductDetailsComponent implements OnInit {
     });
 
     this.productService.getProductById(this.id).subscribe(product => {
+      product["amount"] = 1;
       this.product= product;
     })
   }  
 
   addProductToCart(product: Product, content: any): void {
+    product.amount= this.optionAmount;
     this.cartService.addProductToCart(product);
-    //window.alert("Product added to cart");
+    //window.alert("Product added to cart");    
     this.openModal(content);
     
   }
