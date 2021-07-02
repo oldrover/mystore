@@ -14,7 +14,29 @@ export class CartService {
   }
 
   addProductToCart(product: Product): void {
-    this.products.push(product)
+    let c =0;
+
+      this.products.forEach( p => {
+        if( p.id == product.id) {
+          p.amount = +p.amount + +product.amount;
+          c++;
+        } 
+      });
+      if(c==0){
+        this.products.push(product);
+      }
+    
+    
+      
+            
+  }
+
+  removeProductFromCart(product: Product): void {
+    this.products = this.products.filter( p => p.id != product.id);
+  }
+
+  clearCart(): void {
+    this.products = [];
   }
 
 }
