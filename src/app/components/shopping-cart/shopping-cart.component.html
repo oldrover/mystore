@@ -1,10 +1,13 @@
+<div class="cart shadow">
 <div class="row" *ngIf="!empty">
-    <div class="col container">
+    <div class="col container items">
         <div class="row" *ngFor="let product of products">
             <div class="col"><img src="{{ product.image}}"></div>
-            <div class="col">{{product.title}}</div>{{ product.id}}
-            <div class="col">{{ product.price | currency }}</div>
+            <div class="col">{{product.title}}</div>            
             <div class="col">count: {{ product.amount }}</div>
+            <div class="col">{{ product.price | currency }}</div>
+            <div class="col"><fa-icon [icon]="faRemove" (click)="removeFromCart(product)"></fa-icon></div>
+            <hr>
         </div>
         <hr>
         <div class="col" id="total">{{ total | currency }}</div>
@@ -29,4 +32,8 @@
         </form>
     </div>
 </div>
-<div *ngIf="empty"> Shopping cart is empty!</div>
+<div *ngIf="empty">
+    <strong>Shopping cart is empty!</strong><br>
+    <a routerLink="/"><button class="btn btn-secondary"><- back to products</button></a>
+</div>
+</div>

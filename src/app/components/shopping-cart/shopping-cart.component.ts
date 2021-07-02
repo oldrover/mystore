@@ -1,7 +1,8 @@
 import { Component, OnInit , Input} from '@angular/core';
-import { Product } from '../models/Product';
-import { CartService } from '../services/cart.service';
+import { Product } from '../../models/Product';
+import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,6 +13,8 @@ export class ShoppingCartComponent implements OnInit {
   products: Product[] = this.cartService.getCartProducts();
   total: number = 0;
   empty: boolean = true;
+
+  faRemove = faMinusCircle;
 
   name: string = "";
   address: string = "";
@@ -26,10 +29,19 @@ export class ShoppingCartComponent implements OnInit {
       }, 0);
       this.empty = false;
     }
+    else{
+      this.empty = true;
+    }
   }
 
-  submitOrder() {    
+  submitOrder(): void {    
     this.router.navigate(['confirmation'],{ queryParams: {name: this.name,total: this.total }});
     this.cartService.clearCart();
+  }
+
+  removeFromCart(product: Product): void {
+    this.cartService.removeProductFromCart(product);
+    this.products = this.cartService.getCartProducts();
+    this.ngOnInit();
   }
 }
