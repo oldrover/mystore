@@ -1,7 +1,8 @@
 <a [routerLink]="['/products', product.id]">
 <div class="product-item">
     <strong>{{ product.title }}</strong>
-    <img src="{{ product.image }}">
+    <img class="product-image" src="{{ product.image }}">
     <p><strong>{{ product.price | currency }}</strong></p>
+    <button class="btn btn-primary">go to Product</button>
 </div>
 </a>
