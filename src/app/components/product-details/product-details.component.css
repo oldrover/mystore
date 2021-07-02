@@ -2,16 +2,37 @@ img {
     width: 300px;
     border-radius: 5px;
 }
-.product-details {
-    margin: 10px;
+.product-details {          
+    margin-top: 70px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 50px;     
     display: flex;
     align-items: center;
     justify-content: center;       
     flex-direction: row;
-    flex-wrap: wrap;
-    flex: 400px;
-    
+    flex-wrap: wrap;     
+    background-color:rgba(255, 255, 255, 0.25);
+    border-radius: 10px;   
 }
+
+.description {
+    position: relative;     
+    align-items: center; 
+    justify-content: center;      
+    padding: 10px;    
+}
+
+.input-group {
+    padding-top: 30px;
+    justify-content: flex-end; 
+}
+
+.backlink {
+    padding-right: 10px;      
+    text-align: right;
+}
+
 
 .modal-body, 
 .modal-footer {
@@ -20,5 +41,5 @@ img {
     align-items: center;
     justify-content: center;       
     flex-direction: row;
-    flex-wrap: wrap;    
+    flex-wrap: wrap;        
 }

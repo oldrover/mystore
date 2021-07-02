@@ -7,22 +7,24 @@
     </div>
   </ng-template>
 
-<div class="container row">    
-    <div class="product-details col">    
+<div class="container row product-details shadow">    
+    <div class="col">    
         <img src="{{ product.image }}">        
     </div>
-    <div class="col">
+    <div class="col description">
         <h3>{{product.title}}</h3>
         <p>{{ product.description }}</p>
         <div class="input-group">
-            <select class="form-select" [(ngModel)]="optionAmount">
+            <select class="selectpicker" [(ngModel)]="optionAmount">
                 <option *ngFor="let o of options">{{ o }}</option>
             </select>
-            <button class="btn btn-success" (click)="addProductToCart(product, content)">
+            <button class="btn btn-secondary" (click)="addProductToCart(product, content)">
                 <fa-icon [icon]="faCart"></fa-icon> add to cart
             </button>
-            <a routerLink="/">back to products</a> 
         </div>
+        <div class="backlink">     
+            <a routerLink="/"><-back to products</a>        
+        </div>       
     </div>
 </div>
 
