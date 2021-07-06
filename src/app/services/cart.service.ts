@@ -24,11 +24,7 @@ export class CartService {
       });
       if(c==0){
         this.products.push(product);
-      }
-    
-    
-      
-            
+      }           
   }
 
   removeProductFromCart(product: Product): void {
@@ -37,6 +33,16 @@ export class CartService {
 
   clearCart(): void {
     this.products = [];
+  }
+
+  changeAmount(newAmount: number, id: number): void {
+    this.products = this.products.map( p => {
+      if(p.id == id) {
+        p.amount = newAmount;
+      }
+      return p;
+    });
+
   }
 
 }

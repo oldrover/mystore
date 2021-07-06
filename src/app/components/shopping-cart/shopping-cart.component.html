@@ -1,16 +1,25 @@
 <div class="cart shadow">
-<div class="row" *ngIf="!empty">
+<div class="row container" *ngIf="!empty">
     <div class="col container items">
         <div class="row" *ngFor="let product of products">
-            <div class="col"><img src="{{ product.image}}"></div>
-            <div class="col">{{product.title}}</div>            
-            <div class="col">count: {{ product.amount }}</div>
-            <div class="col">{{ product.price | currency }}</div>
-            <div class="col"><fa-icon [icon]="faRemove" (click)="removeFromCart(product)"></fa-icon></div>
+            <div class="col-md-2 ml-auto"><img src="{{ product.image}}"></div>
+            <div class="col-md-2 ml-auto">{{product.title}}</div>            
+            <div class="col-md-2 ml-auto">                               
+                <select class="form-select" [(ngModel)]="product.amount" (ngModelChange)="onChange($event, product.id)">
+                    <option *ngFor="let num of num">
+                        {{num}}
+                    </option>                    
+                </select>              
+                
+            </div>
+            <div class="col-md-2 ml-auto">{{ product.price | currency }}</div>
+            <div class="col-md-2 ml-auto">
+                <fa-icon [icon]="faRemove" (click)="removeFromCart(product)" placement="top" ngbTooltip="Remove from cart"></fa-icon>
+            </div>
             <hr>
         </div>
         <hr>
-        <div class="col" id="total">{{ total | currency }}</div>
+        <div class="col total" id="total">Total: {{ total | currency }}</div>
     </div>
     <div class="col">
         <form #form="ngForm" (ngSubmit)="submitOrder()">
@@ -32,7 +41,7 @@
         </form>
     </div>
 </div>
-<div *ngIf="empty">
+<div class="empty" *ngIf="empty">
     <strong>Shopping cart is empty!</strong><br>
     <a routerLink="/"><button class="btn btn-secondary"><- back to products</button></a>
 </div>
