@@ -26,15 +26,19 @@ export class CartService {
       if(exist==0){
         this.products.push(product);
       } 
-    localStorage.setItem("myStoreCart", JSON.stringify(this.products));          
+    this.saveCartToLocalStorage();          
   }
 
   removeProductFromCart(product: Product): void {
     this.products = this.products.filter( p => p.id != product.id);
+    this.saveCartToLocalStorage();    
+
   }
 
   clearCart(): void {
     this.products = [];
+    this.saveCartToLocalStorage();          
+
   }
 
   changeAmount(newAmount: number, id: number): void {
@@ -44,7 +48,11 @@ export class CartService {
       }
       return p;
     });
+    this.saveCartToLocalStorage();        
+  }
 
+  saveCartToLocalStorage() {
+    localStorage.setItem("myStoreCart", JSON.stringify(this.products));
   }
 
 }

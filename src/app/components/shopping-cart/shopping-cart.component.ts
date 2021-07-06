@@ -50,8 +50,7 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  onChange(newAmount: number, id: number) {
-    window.alert(newAmount + " " + id);
+  onChange(newAmount: number, id: number) {    
     this.cartService.changeAmount(newAmount, id);
     this.products = this.cartService.getCartProducts();
     this.loadCart();
