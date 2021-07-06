@@ -17,22 +17,23 @@ img {
 }
 
 .description {
+    flex-direction: column;    
     position: relative;     
     align-items: center; 
-    justify-content: center;      
-    padding: 10px;    
+    justify-content: center;     
+        
 }
 
-.input-group {
-    padding-top: 30px;
-    justify-content: flex-end; 
+.addtocart{     
+    justify-content: flex-end;    
+    padding-right: 10px;    
+
 }
 
 .backlink {
-    padding-right: 10px;      
+    padding-right: 10px;     
     text-align: right;
 }
-
 
 .modal-body, 
 .modal-footer {
@@ -43,3 +44,10 @@ img {
     flex-direction: row;
     flex-wrap: wrap;        
 }
+
+.quantity {
+    text-align: center;
+}
+
+
+  

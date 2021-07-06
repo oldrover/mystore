@@ -1,9 +1,10 @@
 <ng-template #content let-modal>    
     <div class="modal-body">
-      <strong>product added to cart</strong>
+        <strong>product added to cart</strong>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-success" (click)="modal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-secondary" routerLink="/" (click)="modal.close('Close click')">back to products</button>
+        <button type="button" class="btn btn-secondary" routerLink="/cart" (click)="modal.close('Close click')">go to cart</button>
     </div>
   </ng-template>
 
@@ -11,21 +12,35 @@
     <div class="col">    
         <img src="{{ product.image }}">        
     </div>
+
     <div class="col description">
-        <h3>{{product.title}}</h3>
-        <p>{{ product.description }}</p>
-        <div class="input-group">
-            <select class="selectpicker" [(ngModel)]="optionAmount">
-                <option *ngFor="let o of options">{{ o }}</option>
-            </select>
-            <button class="btn btn-secondary" (click)="addProductToCart(product, content)">
-                <fa-icon [icon]="faCart"></fa-icon> add to cart
-            </button>
+        <div>
+            <h3>{{product.title}}</h3>
+            <p>{{ product.description }}</p>   
         </div>
-        <div class="backlink">     
-            <a routerLink="/"><-back to products</a>        
+
+        <div class="addtocart row">
+            <div class="input-group col-sm-4">
+                <span class=" input-group-prepend">
+                    <button class="btn btn-outline-secondary btn-number" (click)="handleMinus()">-</button>
+                </span>
+                    <input type="text" class="quantity form-control input-number" value="1" [(ngModel)]="amount"/>
+                <span class="input-group-append">
+                    <button class="btn btn-outline-secondary btn-number" (click)="handlePlus()">+</button>
+                </span>                                
+            </div>
+
+            <div class="row col-sm-4">        
+                <button class="btn btn-secondary" (click)="addProductToCart(product, content)">
+                    <fa-icon [icon]="faCart"></fa-icon> add to cart
+                </button>
+            </div> 
         </div>       
-    </div>
+            <div class="backlink">     
+                <a routerLink="/"><-back to products</a>        
+            </div> 
+    </div>     
+    
 </div>
 
 

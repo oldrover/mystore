@@ -18,8 +18,7 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   faCart = faCartPlus; 
   
-  optionAmount: number = 1;
-  options = [1,2,3,4,5];
+  amount: number = 1;  
 
   constructor(
     private route: ActivatedRoute, 
@@ -51,14 +50,22 @@ export class ProductDetailsComponent implements OnInit {
   }  
 
   addProductToCart(product: Product, content: any): void {
-    product.amount= this.optionAmount;
+    product.amount= this.amount;
     this.cartService.addProductToCart(product);
     //window.alert("Product added to cart");    
     this.openModal(content);
     
   }
 
+  handleMinus() {    
+    this.amount--;  
+  }
+  handlePlus() {
+    this.amount++;    
+  }
+
   openModal(content: any) {
     this.modalService.open(content, { windowClass: 'dark-modal', size: 'sm' });
   }
+  
 }
