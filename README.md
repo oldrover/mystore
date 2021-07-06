@@ -1,6 +1,8 @@
 # MyStore
+
 This project is a e-commerce frontend single-page application generated with Angular.
 The website allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process.
+
 As a backend i used the [Fake Store API](https://github.com/keikaavousi/fake-store-api)
 ---
 
