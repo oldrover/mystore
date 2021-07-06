@@ -10,21 +10,23 @@ export class CartService {
   constructor() { }
 
   getCartProducts(): Product[] {
+    this.products = JSON.parse(localStorage.getItem("myStoreCart") || '{}');
     return this.products;
   }
 
   addProductToCart(product: Product): void {
-    let c =0;
+    let exist =0;
 
       this.products.forEach( p => {
         if( p.id == product.id) {
           p.amount = +p.amount + +product.amount;
-          c++;
+          exist++;
         } 
       });
-      if(c==0){
+      if(exist==0){
         this.products.push(product);
-      }           
+      } 
+    localStorage.setItem("myStoreCart", JSON.stringify(this.products));          
   }
 
   removeProductFromCart(product: Product): void {
