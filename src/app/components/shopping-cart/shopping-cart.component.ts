@@ -2,7 +2,9 @@ import { Component, OnInit} from '@angular/core';
 import { Product } from '../../models/Product';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimesCircle, faCheckCircle, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,13 +17,19 @@ export class ShoppingCartComponent implements OnInit {
   empty: boolean = true;
   num: number[] = [1,2,3,4,5,6,7,8,9,10];  
 
-  faRemove = faMinusCircle;
+  faRemove = faTimesCircle;
+  faOk = faCheckCircle;
+  faWrong = faExclamationCircle;
 
   name: string = "";
   address: string = "";
   creditcard: string = "";
 
-  constructor(private cartService: CartService, private router: Router) { }
+  constructor(
+    private cartService: CartService, 
+    private router: Router,
+    private modalService: NgbModal,
+    ) { }
 
   ngOnInit(): void {    
     this.loadCart();     
@@ -32,8 +40,9 @@ export class ShoppingCartComponent implements OnInit {
     this.cartService.clearCart();
   }
 
-  removeFromCart(product: Product): void {
+  removeFromCart(product: Product, content: any): void {
     this.cartService.removeProductFromCart(product);
+    this.openModal(content);
     this.products = this.cartService.getCartProducts();
     this.loadCart();
   }
@@ -55,5 +64,12 @@ export class ShoppingCartComponent implements OnInit {
     this.products = this.cartService.getCartProducts();
     this.loadCart();
 
+  }
+
+  openModal(content: any) {
+    this.modalService.open(content, { windowClass: 'dark-modal', size: 'sm' });
+    setTimeout(() => {
+      this.modalService.dismissAll();
+    },2000);
   }
 }

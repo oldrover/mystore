@@ -1,3 +1,9 @@
+<ng-template #content let-modal>    
+    <div class="modal-body">
+        <strong>product removed from cart</strong>
+    </div>    
+  </ng-template>
+
 <div class="cart shadow">
 <div class="row container" *ngIf="!empty">
     <div class="col container items">
@@ -14,7 +20,7 @@
             </div>
             <div class="col-md-2 ml-auto">{{ product.price | currency }}</div>
             <div class="col-md-2 ml-auto">
-                <fa-icon [icon]="faRemove" (click)="removeFromCart(product)" placement="top" ngbTooltip="Remove from cart"></fa-icon>
+                <fa-icon [icon]="faRemove" (click)="removeFromCart(product, content)" placement="top" ngbTooltip="Remove from cart"></fa-icon>
             </div>
             <hr>
         </div>
@@ -23,22 +29,41 @@
     </div>
     <div class="col">
         <form #form="ngForm" (ngSubmit)="submitOrder()">
-            <div class="form-floating">
-                <label for="inputName">Name</label>
-                <input class="form-control" required minlength="3" name="name" placeholder="(minimum 3 characters)" [(ngModel)]="name">
+            <label for="inputName">Name</label>
+            <div class="input-group mb-2">                
+                <input class="form-control" required minlength="3" #nameCheck="ngModel" name="inputName" placeholder="(minimum 3 characters)" [(ngModel)]="name">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="addon-name">
+                        <fa-icon *ngIf="!nameCheck.errors" [icon]="faOk" style="color: green"></fa-icon>
+                        <fa-icon *ngIf="nameCheck.errors" [icon]="faWrong" style="color: red"></fa-icon>
+                    </span>
+                  </div>
             </div>
-            <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input class="form-control" required minlength="6" name="address" placeholder="(minimum 6 characters)" [(ngModel)]="address">
+            <label for="inputAddress">Address</label>
+            <div class="input-group mb-2">                
+                <input class="form-control" required minlength="6" #addressCheck="ngModel" name="inputAddress" placeholder="(minimum 6 characters)" [(ngModel)]="address">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="addon-address">
+                        <fa-icon *ngIf="!addressCheck.errors" [icon]="faOk" style="color: green"></fa-icon>
+                        <fa-icon *ngIf="addressCheck.errors" [icon]="faWrong" style="color: red"></fa-icon>
+                    </span>
+                  </div>
             </div>
-            <div class="form-group">
-                <label for="inputCard">Credit Card Number</label>
-                <input class="form-control" required minlength="16" name="creditcard" placeholder="(16-digit number)" [(ngModel)]="creditcard">
+            <label for="inputCard">Credit Card Number</label>
+            <div class="input-group mb-2">                
+                <input class="form-control" required pattern="[0-9]{16}" #creditCheck="ngModel" name="inputCard" placeholder="(16-digit number)" [(ngModel)]="creditcard">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="addon-credit">
+                        <fa-icon *ngIf="!creditCheck.errors" [icon]="faOk" style="color: green"></fa-icon>
+                        <fa-icon *ngIf="creditCheck.errors" [icon]="faWrong" style="color: red"></fa-icon>
+                    </span>
+                  </div>
             </div>
-            <div class="form-group">
-                <input type="submit" [disabled]="form.invalid" value="Submit" class="btn btn-primary">
+            <div class="input-group mb-2">
+                <input type="submit" [disabled]="form.invalid" value="Submit" class="btn btn-primary">                
             </div>
-        </form>
+        </form>        
+
     </div>
 </div>
 <div class="empty" *ngIf="empty">
